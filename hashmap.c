@@ -40,19 +40,9 @@ int is_equal(void* key1, void* key2){
 
 
 void insertMap(HashMap * map, char * key, void * value) {
-    long position = hash(key, map->capacity);
 
-    while (map->buckets[position] != NULL && map->buckets[position]->key != NULL) {
-        position = (position + 1) % map->capacity;  // Resolución de colisiones: lineal
-    }
 
-    if (map->buckets[position] == NULL) {
-        map->buckets[position] = createPair(strdup(key), value);
-        map->size++;
-        map->current = position;
-    }
 }
-
 
 void enlarge(HashMap * map) {
     enlarge_called = 1; //no borrar (testing purposes)
